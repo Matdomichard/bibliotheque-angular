@@ -1,0 +1,52 @@
+
+<h1>Gestion de bibliothèque</h1>
+
+<!-- Liste des livres disponibles -->
+<h2>Livres disponibles</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Auteur</th>
+      <th>Disponible</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let livre of livres">
+      <td>{{ livre.titre }}</td>
+      <td>{{ livre.auteur }}</td>
+      <td>{{ livre.disponible ? 'Oui' : 'Non' }}</td>
+      <td>
+        <!-- Si livre dispo => bouton Emprunter, sinon bouton Retourner -->
+        <button
+          *ngIf="livre.disponible"
+          (click)="emprunterLivre(livre)">
+          Emprunter
+        </button>
+        <button
+          *ngIf="!livre.disponible"
+          (click)="retournerLivre(livre)">
+          Retourner
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulaire d'ajout -->
+<h2>Ajouter un livre</h2>
+<form (ngSubmit)="ajouterLivre()">
+  <label>
+    Titre :
+    <input type="text" [(ngModel)]="nouveauTitre" name="titre" required />
+  </label>
+  <br>
+  <label>
+    Auteur :
+    <input type="text" [(ngModel)]="nouvelAuteur" name="auteur" required />
+  </label>
+  <br>
+  <button type="submit">Ajouter</button>
+</form>
+
