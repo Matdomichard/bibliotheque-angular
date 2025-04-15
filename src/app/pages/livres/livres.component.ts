@@ -24,7 +24,7 @@ export class LivresComponent implements OnInit {
   chargerLivres(): void {
     this.livreService.getLivresDisponibles().subscribe({
       next: (data) => {
-        this.livres = data;
+        this.livres = data.filter(livre => livre !== null && livre !== undefined);
       },
       error: (err) => {
         console.error('Erreur lors du chargement des livres', err);
@@ -40,7 +40,6 @@ export class LivresComponent implements OnInit {
     };
     this.livreService.ajouterLivre(livreAAjouter).subscribe({
       next: (livreCree) => {
-        // On pourrait recharger la liste ou juste pousser dans le tableau
         this.livres.push(livreCree);
         // On réinitialise le formulaire
         this.nouveauTitre = '';
