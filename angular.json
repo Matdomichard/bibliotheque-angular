@@ -74,24 +74,20 @@
             "browserTarget": "bibliotheque-angular:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
+      "test": {
+        "builder": "@angular-builders/jest:run",
+        "options": {
+          "tsConfig": "tsconfig.spec.json",
+          "assets": [
+            "src/favicon.ico",
+            "src/assets"
+          ],
+          "styles": [
+            "src/styles.css"
+          ],
+          "scripts": []
         }
+      }
       }
     }
   }
